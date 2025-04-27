@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:showbiz_hub/Appbar/appbar.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -10,14 +12,26 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   String? selectedRole;
-  String? selectedDuskey;
-  String? selectedSkill;
+  String? selectedSkinTune;
+  String? selectedBodyType;
+  XFile? selectedImage;
+
+  Future<void> _pickImage(ImageSource source) async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: source);
+    if (image != null) {
+      setState(() {
+        selectedImage = image;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'Profile'),
-      body: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: EdgeInsets.all(12),
           child: Column(
             children: [
@@ -32,9 +46,7 @@ class _ProfileState extends State<Profile> {
                   hintText: 'Enter your name',
                 ),
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Jackie65@gmail.com',
@@ -47,9 +59,7 @@ class _ProfileState extends State<Profile> {
                   hintText: 'Enter your email',
                 ),
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Phone Number',
@@ -62,9 +72,7 @@ class _ProfileState extends State<Profile> {
                   hintText: 'Enter your Number',
                 ),
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               Row(
                 children: [
                   Text(
@@ -76,9 +84,7 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Age',
@@ -88,12 +94,9 @@ class _ProfileState extends State<Profile> {
                   ),
                   fillColor: Colors.deepPurpleAccent,
                   filled: true,
-                  hintText: 'Enter your email',
                 ),
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Height',
@@ -103,12 +106,9 @@ class _ProfileState extends State<Profile> {
                   ),
                   fillColor: Colors.deepPurpleAccent,
                   filled: true,
-                  hintText: 'Enter your email',
                 ),
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Weight',
@@ -118,15 +118,12 @@ class _ProfileState extends State<Profile> {
                   ),
                   fillColor: Colors.deepPurpleAccent,
                   filled: true,
-                  hintText: 'Enter your email',
                 ),
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  labelText: 'Plus size',
+                  labelText: 'Body Type',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: Colors.grey),
@@ -134,7 +131,7 @@ class _ProfileState extends State<Profile> {
                   filled: true,
                   fillColor: Colors.deepPurpleAccent,
                 ),
-                items: ['Admin', 'User']
+                items: ['Slim', 'Average', 'Athletic', 'Plus Size']
                     .map((role) => DropdownMenuItem<String>(
                           value: role,
                           child: Text(role),
@@ -142,17 +139,15 @@ class _ProfileState extends State<Profile> {
                     .toList(),
                 onChanged: (value) {
                   setState(() {
-                    selectedRole = value;
+                    selectedBodyType = value;
                   });
                 },
-                value: selectedRole,
+                value: selectedBodyType,
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  labelText: 'Duskey',
+                  labelText: 'Skin Tune',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: Colors.grey),
@@ -160,7 +155,7 @@ class _ProfileState extends State<Profile> {
                   filled: true,
                   fillColor: Colors.deepPurpleAccent,
                 ),
-                items: ['Admin', 'User']
+                items: ['Fair', 'Wheatish', 'Dusky']
                     .map((role) => DropdownMenuItem<String>(
                           value: role,
                           child: Text(role),
@@ -168,14 +163,12 @@ class _ProfileState extends State<Profile> {
                     .toList(),
                 onChanged: (value) {
                   setState(() {
-                    selectedRole = value;
+                    selectedSkinTune = value;
                   });
                 },
-                value: selectedRole,
+                value: selectedSkinTune,
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Language',
@@ -185,13 +178,9 @@ class _ProfileState extends State<Profile> {
                   ),
                   fillColor: Colors.deepPurpleAccent,
                   filled: true,
-                  hintText: 'Enter your email',
                 ),
               ),
-              SizedBox(),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Short Bio',
@@ -203,12 +192,10 @@ class _ProfileState extends State<Profile> {
                 maxLines: 4,
                 maxLength: 150,
               ),
-              SizedBox(
-                height: 11,
-              ),
+              SizedBox(height: 11),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  labelText: 'other skills',
+                  labelText: 'Other skills',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: Colors.grey),
@@ -216,7 +203,7 @@ class _ProfileState extends State<Profile> {
                   filled: true,
                   fillColor: Colors.deepPurpleAccent,
                 ),
-                items: ['Admin', 'User']
+                items: ['Dance', 'Action', 'Comedy']
                     .map((role) => DropdownMenuItem<String>(
                           value: role,
                           child: Text(role),
@@ -227,12 +214,11 @@ class _ProfileState extends State<Profile> {
                     selectedRole = value;
                   });
                 },
-                value: selectedRole,
+                value: selectedRole ?? 'Dance',
               ),
-              SizedBox(
-                height: 11,
-              ),
-              Row(
+              SizedBox(height: 11),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Upload Media",
@@ -242,29 +228,63 @@ class _ProfileState extends State<Profile> {
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(
-                    height: 11,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Handle the button press here
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurpleAccent,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                  SizedBox(height: 11),
+                  Card(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.add_a_photo),
+                              onPressed: () {
+                                _pickImage(ImageSource.gallery);
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.camera_alt),
+                              onPressed: () {
+                                _pickImage(ImageSource.camera);
+                              },
+                            ),
+                          ],
                         ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 73, vertical: 5),
-                      ),
-                      child: const Text('Save'),
+                        if (selectedImage != null)
+                          Image.file(
+                            File(selectedImage!.path),
+                            width: 100,
+                            height: 100,
+                          ),
+                      ],
                     ),
                   ),
                 ],
               ),
+              SizedBox(height: 11),
+              SizedBox(height: 11),
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurpleAccent,
+                    padding: EdgeInsets.symmetric(horizontal: 72, vertical: 6),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'Save',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              )
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

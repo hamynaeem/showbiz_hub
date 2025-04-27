@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:showbiz_hub/Home/home.dart';
-import 'package:showbiz_hub/Profile/profile.dart';
+import 'package:showbiz_hub/Home/home.dart'; // Make sure this imports the right Home screen widget
+import 'package:showbiz_hub/Profile/profile.dart'; // Profile screen
 
 class Bottom extends StatefulWidget {
   const Bottom({super.key});
@@ -15,7 +15,7 @@ class _BottomState extends State<Bottom> with SingleTickerProviderStateMixin {
 
   final List<Widget> _pages = [
     const Homescreen(),
-    const Homescreen(), // Replace later with your Cart page
+    const Homescreen(),
     const Profile(),
   ];
 
@@ -47,43 +47,41 @@ class _BottomState extends State<Bottom> with SingleTickerProviderStateMixin {
         physics: const NeverScrollableScrollPhysics(), // Prevent swipe
         children: _pages,
       ),
-      bottomNavigationBar: SafeArea(
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.deepPurpleAccent,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.black,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          currentIndex: _currentIndex,
-          onTap: _onTabTapped,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                size: 30, // bigger size
-                weight: 700, // bold style (for Material 3)
-              ),
-              label: "Home",
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.deepPurpleAccent,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              size: 30, // bigger size
+              weight: 700, // bold style (for Material 3)
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                size: 30, // bigger size
-                weight: 700, // bold style (for Material 3)
-              ),
-              label: "Home",
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.notification_add,
+              size: 30, // bigger size
+              weight: 700, // bold style (for Material 3)
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.notification_add,
-                size: 30,
-                weight: 700,
-              ),
-              label: "Profile",
+            label: "Notification",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              size: 30,
+              weight: 700,
             ),
-          ],
-        ),
+            label: "Profile",
+          ),
+        ],
       ),
     );
   }
