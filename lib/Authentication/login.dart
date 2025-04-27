@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:showbiz_hub/bootom.dart';
-import 'package:showbiz_hub/signup.dart';
+import 'package:showbiz_hub/Authentication/signup.dart';
+import 'package:showbiz_hub/Bottom_Nav/bootom.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});

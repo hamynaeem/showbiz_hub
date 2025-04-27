@@ -1,7 +1,5 @@
-import 'dart:ffi' as ffi;
-
 import 'package:flutter/material.dart';
-import 'package:showbiz_hub/appbar.dart';
+import 'package:showbiz_hub/Appbar/appbar.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -251,7 +249,6 @@ class _ProfileState extends State<Profile> {
                     child: ElevatedButton(
                       onPressed: () {
                         // Handle the button press here
-                        print('Button pressed!');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.deepPurpleAccent,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:showbiz_hub/bootom.dart';
-import 'package:showbiz_hub/login.dart';
+import 'package:showbiz_hub/Authentication/login.dart';
+import 'package:showbiz_hub/Bottom_Nav/bootom.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -43,6 +43,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
+                      // ignore: deprecated_member_use
                       color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 2,
                       blurRadius: 5,
@@ -75,7 +76,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Colors.grey,
                       spreadRadius: 2,
                       blurRadius: 5,
                       offset: const Offset(0, 3),
@@ -115,7 +116,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Colors.grey,
                       spreadRadius: 2,
                       blurRadius: 5,
                       offset: const Offset(0, 3),
@@ -150,6 +151,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Please select your gender';
                     }
+                    return null;
                   },
                 ),
               ),
@@ -158,7 +160,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Colors.grey,
                       spreadRadius: 2,
                       blurRadius: 5,
                       offset: const Offset(0, 3),
@@ -193,6 +195,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Please select your role';
                     }
+                    return null;
                   },
                 ),
               ),
@@ -201,7 +204,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Colors.grey,
                       spreadRadius: 2,
                       blurRadius: 5,
                       offset: const Offset(0, 3),
@@ -229,6 +232,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (value.length < 6) {
                       return 'Password must be at least 6 characters';
                     }
+                    return null;
                   },
                 ),
               ),
@@ -254,14 +258,6 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 22),
               Center(
                 child: ElevatedButton(
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurpleAccent,
                     padding: const EdgeInsets.symmetric(
@@ -283,6 +279,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       );
                     }
                   },
+                  child: Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 12),

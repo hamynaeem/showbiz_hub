@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:showbiz_hub/bootom.dart';
-import 'package:showbiz_hub/login.dart';
-import 'package:showbiz_hub/profile.dart';
-import 'package:showbiz_hub/signup.dart';
-import 'package:showbiz_hub/splash.dart';
-import 'package:showbiz_hub/welcome.dart';
+import 'package:showbiz_hub/Splashscreens/splash.dart';
 
 void main() {
   runApp(const MyApp());

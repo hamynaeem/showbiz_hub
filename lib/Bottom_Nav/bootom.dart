@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:showbiz_hub/home.dart';
-import 'package:showbiz_hub/profile.dart';
+import 'package:showbiz_hub/Home/home.dart';
+import 'package:showbiz_hub/Profile/profile.dart';
 
 class Bottom extends StatefulWidget {
   const Bottom({super.key});
@@ -52,7 +52,7 @@ class _BottomState extends State<Bottom> with SingleTickerProviderStateMixin {
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.deepPurpleAccent,
           selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.black.withOpacity(0.6),
+          unselectedItemColor: Colors.black,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           currentIndex: _currentIndex,
