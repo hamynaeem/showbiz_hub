@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:showbiz_hub/Appbar/appbar.dart';
+import 'package:showbiz_hub/join_as_heier/signup/detailscreen.dart';
 
-class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
+class Homescreen2 extends StatefulWidget {
+  const Homescreen2({super.key});
 
   @override
-  State<Homescreen> createState() => _HomescreenState();
+  State<Homescreen2> createState() => _Homescreen2State();
 }
 
-class _HomescreenState extends State<Homescreen> {
+class _Homescreen2State extends State<Homescreen2> {
   final List<Map> myProducts = [
     {
       "name": "Art Exhibition",
@@ -32,7 +33,6 @@ class _HomescreenState extends State<Homescreen> {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +81,19 @@ class _HomescreenState extends State<Homescreen> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Detailscreen2(
+                                        name: product["name"],
+                                        image: product["image"],
+                                        date: product["date"],
+                                        description: product["description"],
+                                      ),
+                                    ),
+                                  );
+                                },
                                 style: TextButton.styleFrom(
                                   foregroundColor: Colors.white,
                                   padding: EdgeInsets.zero,

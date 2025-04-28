@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:showbiz_hub/Authentication/signup.dart';
 import 'package:showbiz_hub/Bottom_Nav/bootom.dart';
 import 'package:showbiz_hub/Splashscreens/splash.dart';
 
-class Loginscreen extends StatefulWidget {
-  const Loginscreen({super.key});
+import '../Authentication/signup.dart';
+
+class Loginscreen2 extends StatefulWidget {
+  const Loginscreen2({super.key});
 
   @override
-  State<Loginscreen> createState() => _LoginscreenState();
+  State<Loginscreen2> createState() => _Loginscreen2State();
 }
 
-class _LoginscreenState extends State<Loginscreen> {
+class _Loginscreen2State extends State<Loginscreen2> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();

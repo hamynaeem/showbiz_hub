@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:showbiz_hub/Authentication/login.dart';
 import 'package:showbiz_hub/widgets/button.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class Signup2 extends StatefulWidget {
+  const Signup2({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<Signup2> createState() => _Signup2State();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _Signup2State extends State<Signup2> {
   final _formKey = GlobalKey<FormState>();
   bool isChecked = false;
   String? selectedGender;
@@ -204,7 +204,13 @@ class _SignupScreenState extends State<SignupScreen> {
                     fillColor: Color.fromARGB(255, 140, 14, 219),
                   ),
                   dropdownColor: Colors.white,
-                  items: ['Admin', 'User']
+                  items: [
+                    'Director',
+                    'Assistant Director',
+                    'Casting Director',
+                    'Event Manager',
+                    'Other'
+                  ]
                       .map((role) => DropdownMenuItem<String>(
                             value: role,
                             child: Text(role),

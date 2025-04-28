@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:showbiz_hub/Appbar/appbar.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:showbiz_hub/widgets/button.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -14,6 +15,8 @@ class _ProfileState extends State<Profile> {
   String? selectedRole;
   String? selectedSkinTune;
   String? selectedBodyType;
+  bool makeoverNeeded = false;
+  bool willingToWorkAsExtra = false;
   XFile? selectedImage;
 
   Future<void> _pickImage(ImageSource source) async {
@@ -41,7 +44,7 @@ class _ProfileState extends State<Profile> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                   filled: true,
                   hintText: 'Enter your name',
                 ),
@@ -54,7 +57,7 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(),
                   ),
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                   filled: true,
                   hintText: 'Enter your email',
                 ),
@@ -67,7 +70,7 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(),
                   ),
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                   filled: true,
                   hintText: 'Enter your Number',
                 ),
@@ -92,7 +95,7 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(),
                   ),
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                   filled: true,
                 ),
               ),
@@ -104,7 +107,7 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(),
                   ),
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                   filled: true,
                 ),
               ),
@@ -116,7 +119,7 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(),
                   ),
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                   filled: true,
                 ),
               ),
@@ -129,7 +132,7 @@ class _ProfileState extends State<Profile> {
                     borderSide: const BorderSide(color: Colors.grey),
                   ),
                   filled: true,
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                 ),
                 items: ['Slim', 'Average', 'Athletic', 'Plus Size']
                     .map((role) => DropdownMenuItem<String>(
@@ -153,7 +156,7 @@ class _ProfileState extends State<Profile> {
                     borderSide: const BorderSide(color: Colors.grey),
                   ),
                   filled: true,
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                 ),
                 items: ['Fair', 'Wheatish', 'Dusky']
                     .map((role) => DropdownMenuItem<String>(
@@ -176,8 +179,28 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(),
                   ),
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                   filled: true,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    switchTile('Makeover Needed', makeoverNeeded, (value) {
+                      setState(() {
+                        makeoverNeeded = value;
+                      });
+                    }),
+                    switchTile(
+                        'Willing to work as an extra', willingToWorkAsExtra,
+                        (value) {
+                      setState(() {
+                        willingToWorkAsExtra = value;
+                      });
+                    }),
+                  ],
                 ),
               ),
               SizedBox(height: 11),
@@ -188,6 +211,7 @@ class _ProfileState extends State<Profile> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                 ),
                 maxLines: 4,
                 maxLength: 150,
@@ -195,13 +219,14 @@ class _ProfileState extends State<Profile> {
               SizedBox(height: 11),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
+                  hintText: 'Skills',
                   labelText: 'Other skills',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: Colors.grey),
                   ),
                   filled: true,
-                  fillColor: Colors.deepPurpleAccent,
+                  fillColor: Color.fromARGB(255, 140, 14, 219),
                 ),
                 items: ['Dance', 'Action', 'Comedy']
                     .map((role) => DropdownMenuItem<String>(
@@ -229,58 +254,26 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   SizedBox(height: 11),
-                  Card(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.add_a_photo),
-                              onPressed: () {
-                                _pickImage(ImageSource.gallery);
-                              },
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.camera_alt),
-                              onPressed: () {
-                                _pickImage(ImageSource.camera);
-                              },
-                            ),
-                          ],
-                        ),
-                        if (selectedImage != null)
-                          Image.file(
-                            File(selectedImage!.path),
-                            width: 100,
-                            height: 100,
-                          ),
-                      ],
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          uploadCard('Front'),
+                          uploadCard('left'),
+                          uploadCard('Right'),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 11),
-              SizedBox(height: 11),
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurpleAccent,
-                    padding: EdgeInsets.symmetric(horizontal: 72, vertical: 6),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    'Save',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              )
+              CustomButton(
+                text: 'Save Profile',
+                onPressed: () {},
+              ),
             ],
           ),
         ),
